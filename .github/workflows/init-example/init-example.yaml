@@ -1,0 +1,20 @@
+name: init-example
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  
+jobs:
+  oneline-script:
+    runs-on: alpine-latest
+    steps:
+      - name: Run a one-line script
+        run: echo Hello, World
+  multiline-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a multi-line script
+        run: |
+          echo First line \
+          Second line
