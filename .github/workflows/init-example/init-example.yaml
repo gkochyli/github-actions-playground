@@ -1,8 +1,8 @@
-name: init-example
+name: example
 
 on:
   push: 
-    branches: ["main"]
+    branches: [ "main" ]
   workflow_dispatch:
   
 jobs:
@@ -11,10 +11,3 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo Hello, World
-  multiline-script:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run a multi-line script
-        run: |
-          echo First line \
-          Second line
