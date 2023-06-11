@@ -1,0 +1,13 @@
+name: Check available executables in runner
+
+on: workflow_dispatch
+
+jobs:
+  check_avail_execs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List available executables
+        run: |
+          for P in $(echo $PATH | tr ':' ' ' ); do 
+            ls $P; 
+          done | xargs -L1 | sort | uniq
