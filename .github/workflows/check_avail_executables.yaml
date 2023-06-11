@@ -8,6 +8,6 @@ jobs:
     steps:
       - name: List available executables
         run: |
-          for P in $(echo $PATH | tr ':' ' ' ); do 
-            ls $P; 
-          done | xargs -L1 | sort | uniq
+          echo $PATH | tr ':' '\n' | while read -r dir; do 
+            [ "$(ls -A "$dir")" ] && ls "$dir"; 
+          done  | xargs -L1 | sort | uniq
