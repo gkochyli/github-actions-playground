@@ -1,0 +1,27 @@
+name: "Multiple jobs, write/read from file"
+
+on:
+  push:
+    paths:
+      - .github/workflows/multiple_jobs_read_write_to_file.yaml
+  workflow_dispatch:
+  
+jobs:
+  write_to_file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a one-line script
+        run: echo Hello, World
+      - name: Write to file
+        run: echo bar > foo
+      - name: Cat file foo
+        run: cat foo
+  read_from_file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a multi-line script
+        run: |
+          echo First line \
+          Second line
+      - name: Cat foo from first job
+        run: cat foo
