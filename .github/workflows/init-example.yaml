@@ -6,15 +6,12 @@ on:
   workflow_dispatch:
   
 jobs:
-  oneline-script:
+  init-example:
     runs-on: ubuntu-latest
     steps:
       - name: Run a one-line script
         run: echo Hello, World
-  multiline-script:
-    runs-on: ubuntu-latest
-    steps:
       - name: Run a multi-line script
         run: |
-          echo First line \
-          Second line
+          echo First line
+          echo Second line
