@@ -16,12 +16,22 @@ jobs:
         run: echo bar > foo
       - name: Cat file foo
         run: cat foo
+      - name: Upload output file
+        uses: actions/upload-artifact@v3
+        with:
+          name: foo-file
+          path: foo
   read_from_file:
     runs-on: ubuntu-latest
+    needs: write_to_file
     steps:
       - name: Run a multi-line script
         run: |
           echo First line \
           Second line
+      - name: Download foo-file from artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: foo-file
       - name: Cat foo from first job
         run: cat foo
