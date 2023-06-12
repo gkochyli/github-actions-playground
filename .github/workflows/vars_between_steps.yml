@@ -6,8 +6,6 @@ on:
 jobs:
   pass_vars:
     runs-on: ubuntu-latest
-    env:
-      TEST: ''
     steps:
       - run: |
           echo "TEST=test1" >> "$GITHUB_ENV"
