@@ -19,7 +19,7 @@ jobs:
     needs: pass_vars
     strategy:
       matrix:
-        version: [1 ,2 ,3]
+        version: [1 , ${{ needs.pass_vars.outputs.TEST }} , 3]
     steps:
       - run: |
           echo ${{ matrix.version }}
