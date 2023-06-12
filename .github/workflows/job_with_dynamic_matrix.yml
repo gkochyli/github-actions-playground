@@ -17,7 +17,10 @@ jobs:
   use_vars:
     runs-on: ubuntu-latest
     needs: pass_vars
+    strategy:
+      matrix:
+        version: [1 ,2 ,3]
     steps:
       - run: |
-          echo ${{ needs.pass_vars.outputs.TEST }}
+          echo ${{ matrix.version }}
           env | grep TEST
