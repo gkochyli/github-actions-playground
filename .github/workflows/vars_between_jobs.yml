@@ -5,12 +5,15 @@ on:
     paths: [.github/workflows/vars_between_jobs.yml]
 jobs:
   pass_vars:
+    outputs:
+      TEST: ${{ steps.step1.outputs.TEST }}
     runs-on: ubuntu-latest
     steps:
       - run: |
           export TEST=test1
           echo "TEST=$TEST" >> "$GITHUB_OUTPUT"
           env | grep TEST
+        id: step1
   use_vars:
     runs-on: ubuntu-latest
     needs: pass_vars
