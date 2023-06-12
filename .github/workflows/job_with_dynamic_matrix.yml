@@ -21,7 +21,7 @@ jobs:
       test_var: ${{needs.pass_vars.outputs.TEST}}
     strategy:
       matrix:
-        version: [1, 2, 3]
+        version: [1, $test_var, 3]
     steps:
       - run: |
           echo $test_var
