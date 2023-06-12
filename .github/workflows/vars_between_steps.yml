@@ -9,6 +9,10 @@ jobs:
     env:
       TEST: ''
     steps:
-      - run: export TEST='test1'
-      - run: echo $TEST
+      - run: |
+          export TEST='test1'
+          env | grep TEST
+      - run: |
+          echo $TEST
+          env | grep TEST
       
