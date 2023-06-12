@@ -1,0 +1,13 @@
+name: Test simple matrix
+on:
+  push:
+    paths: [.github/workflows/simple_matrix.yml]
+jobs:
+  example_matrix:
+    strategy:
+      matrix:
+        version: [10, 12, 14]
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.version }}
