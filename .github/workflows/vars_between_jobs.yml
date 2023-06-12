@@ -1,0 +1,20 @@
+name: Vars between jobs
+
+on:
+  push:
+    paths: [.github/workflows/vars_between_jobs.yml]
+jobs:
+  pass_vars:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "TEST=test1" >> "$GITHUB_OUTPUT"
+          env | grep TEST
+        id: test_var
+  use_vars:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo ${{ steps.test_var.outputs.TEST }}
+          env | grep TEST
+      
