@@ -4,6 +4,7 @@ on:
     paths: [.github/workflows/simple_matrix.yml]
 jobs:
   example_matrix:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         version: [10, 12, 14]
