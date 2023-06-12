@@ -10,7 +10,7 @@ jobs:
       TEST: ''
     steps:
       - run: |
-          export TEST='test1'
+          echo "TEST=test1" >> "$GITHUB_ENV"
           env | grep TEST
       - run: |
           echo $TEST
