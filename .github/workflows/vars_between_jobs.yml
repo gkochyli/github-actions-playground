@@ -8,9 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "TEST=test1" >> "$GITHUB_OUTPUT"
+          echo "TEST='test1'" >> "$GITHUB_OUTPUT"
           env | grep TEST
-        id: test_var
   use_vars:
     runs-on: ubuntu-latest
     needs: pass_vars
