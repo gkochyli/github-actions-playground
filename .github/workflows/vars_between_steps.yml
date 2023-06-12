@@ -2,7 +2,7 @@ name: Vars between steps
 
 on:
   push:
-    paths: [.github/workflows/pass_variables_between_steps.yml]
+    paths: [.github/workflows/vars_between_steps.yml]
 jobs:
   pass_vars:
     runs-on: ubuntu-latest
