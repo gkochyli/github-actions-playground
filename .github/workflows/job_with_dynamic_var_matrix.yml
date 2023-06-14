@@ -21,7 +21,7 @@ jobs:
       array: ${{needs.create_matrix_var.outputs.ARRAY}}
     strategy:
       matrix:
-        item: ${{ARRAY}}
+        item: $ARRAY
     steps:
       - name: Echoing ${{ matrix.item }}
         run: |
