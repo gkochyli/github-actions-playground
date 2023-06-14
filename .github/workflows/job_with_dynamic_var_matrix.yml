@@ -22,9 +22,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        item: $ARRAY
+        item: $array
     steps:
       - name: Echoing ${{ matrix.item }}
         run: |
+          echo $array
           echo ${{ matrix.item }}
           env | grep TEST
