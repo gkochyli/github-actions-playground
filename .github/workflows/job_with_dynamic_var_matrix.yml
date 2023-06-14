@@ -11,10 +11,10 @@ jobs:
     steps:
       - id: set-matrix
         run: |
-          echo "matrix={\"include\":[
-            {\"tags\":\"foo\"},
-            {\"tags\":\"bar\"},
-            {\"tags\":\"zzz\"}
+          echo "matrix={\"include\":[ \
+            {\"tags\":\"foo\"}, \
+            {\"tags\":\"bar\"}, \
+            {\"tags\":\"zzz\"} \
           ]}" >> $GITHUB_OUTPUT
   run_from_var_matrix:
     needs: create_matrix
