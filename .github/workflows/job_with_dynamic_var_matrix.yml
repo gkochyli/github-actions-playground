@@ -4,28 +4,17 @@ on:
   push:
     paths: [.github/workflows/job_with_dynamic_var_matrix.yml]
 jobs:
-  create_matrix_var:
+  create_matrix:
+    runs-on: ubuntu-latest
     outputs:
-      ARRAY: ${{ steps.step1.outputs.ARRAY }}
-    runs-on: ubuntu-latest
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - run: |
-          export ARRAY="[1, 2, 3]"
-          echo "ARRAY=$ARRAY" >> "$GITHUB_OUTPUT"
-          env | grep TEST
-        id: step1
-  use_vars:
+      - id: set-matrix
+        run: echo "matrix={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
+  run_from_var_matrix:
+    needs: create_matrix
     runs-on: ubuntu-latest
-    needs: create_matrix_var
-    env:
-      array: ${{needs.create_matrix_var.outputs.ARRAY}}
     strategy:
-      fail-fast: false
-      matrix:
-        item: $array
+      matrix: ${{ fromJSON(needs.job1.outputs.matrix) }}
     steps:
-      - name: Echoing ${{ matrix.item }}
-        run: |
-          echo $array
-          echo ${{ matrix.item }}
-          env | grep TEST
+      - run: echo ${{ matrix.project }}
