@@ -18,7 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ failure() }}
     steps:
-    - name: Run python script
+    - uses: actions/checkout@v4
+    - uses: .github/workflows/run-python.yaml@main
   app-tests:
     runs-on: ubuntu-latest
     steps:
