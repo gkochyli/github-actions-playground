@@ -1,0 +1,25 @@
+on:
+  workflow_dispatch:
+
+name: Failing workflow
+
+jobs:
+  build:
+    steps:
+    - name: Build app
+      run: echo Building...  
+  deploy:
+    steps:
+    - name: Deploy app
+      run: echo Deploying app... && exit 1
+  run_python_if_prev_job_failed:
+    if: ${{ failure() }}
+    steps:
+    - name: Run python script
+  app-tests:
+    steps:
+    - name: Running app tests
+      run: echo Running app tests
+      
+
+
