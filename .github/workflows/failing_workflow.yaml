@@ -22,9 +22,13 @@ jobs:
         echo Deploying app...
         >&2 echo "error" && echo "server_error=1" >> "$GITHUB_OUTPUT"
         exit 1
-  run_python_if_prev_job_failed:
+  python_fix_server_errors:
     needs: [deploy]
     if: ${{ failure() && needs.deploy.outputs.server_error == 1 }}
+    uses: gkochyli/github-actions-playground/.github/workflows/run-python.yaml@main
+  python_fix_app_errors:
+    needs: [deploy]
+    if: ${{ failure() && needs.deploy.outputs.app_error == 1 }}
     uses: gkochyli/github-actions-playground/.github/workflows/run-python.yaml@main
   app-tests:
     runs-on: ubuntu-latest
