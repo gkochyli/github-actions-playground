@@ -16,8 +16,4 @@ jobs:
           architecture: 'x64'
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
-      - name: Echo GitHub env
-        run: echo $GITHUB_ENV
-      - name: Echo GitHub outputs
-        run: echo $GITHUB_OUTPUTS
           
