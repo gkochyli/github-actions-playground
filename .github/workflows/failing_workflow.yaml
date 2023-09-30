@@ -5,18 +5,22 @@ name: Failing workflow
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     steps:
     - name: Build app
       run: echo Building...  
   deploy:
+    runs-on: ubuntu-latest
     steps:
     - name: Deploy app
       run: echo Deploying app... && exit 1
   run_python_if_prev_job_failed:
+    runs-on: ubuntu-latest
     if: ${{ failure() }}
     steps:
     - name: Run python script
   app-tests:
+    runs-on: ubuntu-latest
     steps:
     - name: Running app tests
       run: echo Running app tests
